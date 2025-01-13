@@ -1,11 +1,17 @@
 {
-  "name": "ui_presentation",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "reveal.js": "^5.1.0"
+  }
 }

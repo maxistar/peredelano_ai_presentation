@@ -14,3 +14,10 @@ based on this repo https://maxistar.ru/blog/%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%BE
   - image with hack
 - show slides to someone
 - prerecord video in case there will be no internet
+
+
+## How to run slides
+
+- dev mode: `npm run dev`
+- build: `npm run build`
+- preview: `npm run preview`

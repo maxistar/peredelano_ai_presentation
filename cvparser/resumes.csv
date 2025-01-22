@@ -1,5 +1,7 @@
-File,ФИО,Профессия,Года Опыта,Индустрия,Скор
-Max Starikov CV.pdf,Max Starikov,Senior Software Engineer,23,"Web, Mobile and Desktop Software Development",23
-Max Starikov Senior - Full Stack Engineer (1).pdf,Max Starikov,Senior Full-Stack Engineer,25,"Web, Mobile, and Desktop Software Development",100
-Max Starikov Senior - Full Stack Engineer - original.pdf,Max Starikov,Senior Full-Stack Engineer,25,"Web, Mobile, and Desktop Software Development",25
-Max Starikov Senior - Full Stack Engineer.pdf,Max Starikov,Senior Full-Stack Engineer,25,"Web, Mobile, and Desktop Software Development",100
+Name,Title,Years of Experience,Industry,Main Technology,Score
+Filina Anastasiia,JavaScript Developer,2,Web Development,JavaScript,8
+John Smith,Senior Full-Stack Engineer,25,"Web, Mobile, and Desktop Software Development",PHP,25
+John Smith,Senior Software Engineer,25,"Web, Mobile and Desktop Software Development",PHP,100
+John Smith,Senior Software Engineer,25,"Web, Mobile and Desktop Software Development",PHP,25
+Max Starikov,Senior Software Engineer,23,"Web, Mobile and Desktop Software Development",PHP,23
+Max Starikov,Senior Full-Stack Engineer,25,"Web, Mobile, and Desktop Software Development",PHP,25

@@ -5,10 +5,7 @@ const { OpenAI } = require('openai');
 const { createObjectCsvWriter } = require('csv-writer');
 require('dotenv').config();
 
-// Настройка OpenAI API
-//const configuration = new Configuration({
-//  apiKey: process.env.OPENAI_API_KEY,
-//});
+
 const openai = new OpenAI();
 
 // Папка с PDF-файлами
@@ -19,14 +16,19 @@ const outputCsv = './resumes.csv';
 async function processPdfFile(filePath) {
   const fileData = fs.readFileSync(filePath);
   const pdfText = (await pdfParse(fileData)).text;
-  const prompt = `Извлеки следующую информацию из резюме:\n\n1. ФИО\n2. Профессия\n3. Количество лет опыта - целое число без дополнительных знаков\n4. Индустрия. Score - рейтинг кандидата: число от 1 до 100 равное годам опыта, где - score=1 - 1 лет опыта, score=25 - 25 лет опыта. \n\nПример ответа в формате JSON:\n{"ФИО":"Иванов Иван Иванович", "профессия":"software engineer", "годаОпыта":"10", "индустрия":"геймдев", "score":"1-100"} Markdown недопустим!\n\nТекст резюме:\n${pdfText}`;
-  //console.log('prompt:', prompt);
+  //const prompt = `Извлеки следующую информацию из резюме:\n\n1. ФИО\n2. Профессия\n3. Количество лет опыта - целое число без дополнительных знаков\n4. Индустрия. Score - рейтинг кандидата: число от 1 до 100 равное годам опыта, где - score=1 - 1 лет опыта, score=25 - 25 лет опыта. \n\nПример ответа в формате JSON:\n{"ФИО":"Иванов Иван Иванович", "профессия":"software engineer", "годаОпыта":"10", "индустрия":"геймдев", "score":"1-100"} Markdown недопустим!\n\nТекст резюме:\n${pdfText}`;
+  const prompt = `Extract the name, title, years of experience, industry, and main technology from the CV text provided.\nScore - score of candidate: number from 1 to 100 equals to number of years of the professional experience where score=1 when 1 year of experience, score=25 - 25 years of experience.\n Example of output\n { "name": "John Smith", "title": "Software Engineer", "yearsOfExperience": 10, "industry": "GameDev", "mainTechnology": "Java", "score": "1-100" }\n Output - json only, Markdown is not allowed.\n\nText of CV:\n${pdfText}`
 
+  // console.log(prompt)
+      //  Score - рейтинг кандидата: число от 1 до 100 равное годам опыта, где - score=1 - 1 лет опыта, score=25 - 25 лет опыта.
+// Score - score of candidate: number from 1 to 100 equal to number of years of the professional experience where score=1 when 1 year of experience, 10 - 10 year of experience, 25 - 25 years of experience.  
+  
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-4o',
       messages: [
-        {role: "system", content: prompt}
+        {role: "system", content: prompt},
+//        {role: 'user', content: pdfText},
       ],
       max_tokens: 200,
       temperature: 0,
@@ -46,7 +48,7 @@ async function processAllResumes() {
   const results = [];
   for (const file of files) {
     const filePath = path.join(resumesDir, file);
-    console.log(`Обработка файла: ${file}`);
+    console.log(`Processing ${file}...`);
     const data = await processPdfFile(filePath);
     if (data) {
       results.push({ file, ...data });
@@ -57,12 +59,12 @@ async function processAllResumes() {
   const csvWriter = createObjectCsvWriter({
     path: outputCsv,
     header: [
-      { id: 'file', title: 'File' },
-      { id: 'ФИО', title: 'ФИО' },
-      { id: 'профессия', title: 'Профессия' },
-      { id: 'годаОпыта', title: 'Года Опыта' },
-      { id: 'индустрия', title: 'Индустрия' },
-      { id: 'score', title: 'Скор' },
+      { id: 'name', title: 'Name' },
+      { id: 'title', title: 'Title' },
+      { id: 'yearsOfExperience', title: 'Years of Experience' },
+      { id: 'industry', title: 'Industry' },
+      { id: 'mainTechnology', title: 'Main Technology' },
+      { id: 'score', title: 'Score' },
     ],
   });
 

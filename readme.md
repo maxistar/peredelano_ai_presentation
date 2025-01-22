@@ -8,10 +8,11 @@ based on this repo https://maxistar.ru/blog/%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%BE
 
 - ✓ move presentation to separate folder
 - create a list of demo cvs
-- create a project in separate foder
+- ✓ create a project in separate folder
 - fine tune slides
-  - image from book
-  - image with hack
+  - ✓ image from book
+  - ✓ image with hack 🍅
+- use project from the reveal.js instead of own one 
 - show slides to someone
 - prerecord video in case there will be no internet
 
@@ -21,3 +22,4 @@ based on this repo https://maxistar.ru/blog/%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%BE
 - dev mode: `npm run dev`
 - build: `npm run build`
 - preview: `npm run preview`
+

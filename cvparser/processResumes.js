@@ -17,7 +17,8 @@ async function processPdfFile(filePath) {
   const fileData = fs.readFileSync(filePath);
   const pdfText = (await pdfParse(fileData)).text;
   //const prompt = `Извлеки следующую информацию из резюме:\n\n1. ФИО\n2. Профессия\n3. Количество лет опыта - целое число без дополнительных знаков\n4. Индустрия. Score - рейтинг кандидата: число от 1 до 100 равное годам опыта, где - score=1 - 1 лет опыта, score=25 - 25 лет опыта. \n\nПример ответа в формате JSON:\n{"ФИО":"Иванов Иван Иванович", "профессия":"software engineer", "годаОпыта":"10", "индустрия":"геймдев", "score":"1-100"} Markdown недопустим!\n\nТекст резюме:\n${pdfText}`;
-  const prompt = `Extract the name, title, years of experience, industry, and main technology from the CV text provided.\nScore - score of candidate: number from 1 to 100 equals to number of years of the professional experience where score=1 when 1 year of experience, score=25 - 25 years of experience.\n Example of output\n { "name": "John Smith", "title": "Software Engineer", "yearsOfExperience": 10, "industry": "GameDev", "mainTechnology": "Java", "score": "1-100" }\n Output - json only, Markdown is not allowed.\n\nText of CV:\n${pdfText}`
+  // const prompt = `Extract the name, title, years of experience, industry, and main technology from the CV text provided.
+  const scoring = `\nScore - score of candidate: number from 1 to 100 equals to number of years of the professional experience where score=1 when 1 year of experience, score=25 - 25 years of experience.\n Example of output\n`
 
   // console.log(prompt)
       //  Score - рейтинг кандидата: число от 1 до 100 равное годам опыта, где - score=1 - 1 лет опыта, score=25 - 25 лет опыта.
